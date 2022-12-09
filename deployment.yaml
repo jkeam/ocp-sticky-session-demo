@@ -1,0 +1,72 @@
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: sticky-sessions
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sticky-sessions-app
+  labels:
+    app: simple-dotnet-mvc
+    app.kubernetes.io/name: sticky-sessions-app
+    app.kubernetes.io/component: frontend
+    app.kubernetes.io/part-of: demo
+    app.kubernetes.io/version: "1.0.0"
+    app.openshift.io/runtime: nodejs
+    app.openshift.io/runtime-version: "v18.10.0"
+  annotations:
+    app.openshift.io/vcs-uri: "https://github.com/jkeam/ocp-sticky-session-demo.git"
+    app.openshift.io/vcs-ref: "main"
+spec:
+  selector:
+    matchLabels:
+      app: sticky-sessions-app
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: sticky-sessions-app
+    spec:
+      containers:
+        - image: quay.io/jkeam/ocp-sticky-session-demo:latest
+          name: sticky-sessions-app
+          ports:
+          - containerPort: 4000
+            name: theport
+      restartPolicy: Always
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: sticky-sessions-app
+  labels:
+    app: sticky-sessions-app
+spec:
+  ports:
+    - name: port4000
+      port: 4000
+      targetPort: 4000
+  selector:
+    app: sticky-sessions-app
+  type: LoadBalancer
+
+---
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: sticky-sessions-app
+  labels:
+    app: sticky-sessions-app
+spec:
+  path: /
+  to:
+    kind: Service
+    name: sticky-sessions-app
+    weight: 100
+  port:
+    targetPort: port4000
