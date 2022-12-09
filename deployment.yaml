@@ -22,6 +22,7 @@ metadata:
     app.openshift.io/vcs-uri: "https://github.com/jkeam/ocp-sticky-session-demo.git"
     app.openshift.io/vcs-ref: "main"
 spec:
+  replicas: 2
   selector:
     matchLabels:
       app: sticky-sessions-app
