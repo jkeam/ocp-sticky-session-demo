@@ -6,7 +6,7 @@ USER root
 COPY package*.json .
 RUN npm install --production
 
-COPY src .
+COPY ./src ./src
 
 EXPOSE 4000
 USER nobody
