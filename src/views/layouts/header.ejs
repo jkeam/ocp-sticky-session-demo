@@ -1,0 +1,26 @@
+<nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a class="navbar-item" href="https://openshift.io">
+      <img src="/logo.png">
+    </a>
+  </div>
+
+  <div id="navbarBasicExample" class="navbar-menu">
+    <div class="navbar-start">
+      <a href="/" class="navbar-item">
+        Sticky Sessions App
+      </a>
+    </div>
+
+    <div class="navbar-end">
+      <div class="navbar-item">
+        <div class="buttons">
+
+          <% if (loggedIn) { %>
+            <a class="button is-light" href="/logout">Logout</a>
+          <% } %>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>

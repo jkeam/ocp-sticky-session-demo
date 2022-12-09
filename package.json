@@ -1,0 +1,21 @@
+{
+  "name": "ocp-sticky-session-demo",
+  "version": "1.0.0",
+  "description": "Demo to show off server side session, not hydrated from the cookie, but actually server side session.  In memory only; for demo purposes, no actual database will be used.",
+  "main": "index.js",
+  "repository": "https://github.com/jkeam/ocp-sticky-session-demo.git",
+  "author": "Jon Keam <jpkeam@gmail.com> (https://jonkeam.com)",
+  "license": "MIT",
+  "private": false,
+  "scripts": {
+    "start": "node ./src/app.js",
+    "debug": "DEBUG=express-session node ./src/app.js"
+  },
+  "dependencies": {
+    "ejs": "^3.1.8",
+    "escape-html": "^1.0.3",
+    "express": "^4.18.2",
+    "express-ejs-layouts": "^2.5.1",
+    "express-session": "^1.17.3"
+  }
+}
