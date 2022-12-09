@@ -9,6 +9,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: sticky-sessions-app
+  namespace: sticky-sessions
   labels:
     app: simple-dotnet-mvc
     app.kubernetes.io/name: sticky-sessions-app
@@ -44,6 +45,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: sticky-sessions-app
+  namespace: sticky-sessions
   labels:
     app: sticky-sessions-app
 spec:
@@ -60,8 +62,11 @@ apiVersion: route.openshift.io/v1
 kind: Route
 metadata:
   name: sticky-sessions-app
+  namespace: sticky-sessions
   labels:
     app: sticky-sessions-app
+  annotations:
+    router.openshift.io/cookie_name: "ocpcookie"
 spec:
   path: /
   to:
