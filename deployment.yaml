@@ -14,7 +14,7 @@ metadata:
     app: simple-dotnet-mvc
     app.kubernetes.io/name: sticky-sessions-app
     app.kubernetes.io/component: frontend
-    app.kubernetes.io/part-of: demo
+    app.kubernetes.io/part-of: demos
     app.kubernetes.io/version: "1.0.0"
     app.openshift.io/runtime: nodejs
     app.openshift.io/runtime-version: "v18.10.0"
