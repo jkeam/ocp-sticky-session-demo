@@ -39,6 +39,14 @@ spec:
           ports:
           - containerPort: 4000
             name: theport
+          securityContext:
+            runAsNonRoot: true
+            allowPrivilegeEscalation: false
+            seccompProfile:
+              type: RuntimeDefault
+            capabilities:
+              drop:
+              - ALL
       restartPolicy: Always
 
 ---
